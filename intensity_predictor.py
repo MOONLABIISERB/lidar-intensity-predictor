@@ -28,7 +28,7 @@ torch.cuda.set_device(0)
 root = '/media/moonlab/sd_card/Rellis_3D_lidar_example/'
 models = alpha_model.alpha()
 models.to(device)
-models.load_state_dict(torch.load(root+'/model/best_model_mega_dot.pth')['model_state_dict'])
+models.load_state_dict(torch.load(root+'/model/best_model_mega_tanh.pth')['model_state_dict'])
 
 ant = [19,31,17,4,3]
 ants = [3,4,17,18,19,23,27,31,33]
