@@ -133,7 +133,7 @@ def neighbour_filter(pc,labels): ##filter outliers in prediction considering nei
 
 def convert_ply2bin(bin_path,label_file): ##read, extract and filter the point cloud
     raw_points = load_from_bin(bin_path)
-    labels = np.fromfile('./Rellis_3D_vel_cloud_node_semantickitti_label_id/Rellis-3D/00000/vel_cloud_node_semantickitti_label_id/'+label_file[:-3]+'label',dtype = np.int32,count = -1)
+    labels = np.fromfile('/path/to/Rellis_3D_vel_cloud_node_semantickitti_label_id/Rellis-3D/00000/vel_cloud_node_semantickitti_label_id/'+label_file[:-3]+'label',dtype = np.int32,count = -1)
     
     ind = np.where(labels == 0)[0]
     labels = np.delete(labels,list(ind))
