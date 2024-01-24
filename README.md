@@ -7,7 +7,7 @@
  Extracts the data and calibrates then for training, generating ground truth (Intensity ranges of classes), plotting etc.
  
  <pre>
- python GT_corrector.py
+ python /utils/GT_corrector.py
  </pre>
  To correct the outliers in the ground truth and data generated from <intensity_analyser.py>
  ## Angle of Incidence predictor
