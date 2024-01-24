@@ -22,10 +22,10 @@ cudnn.deterministic = True
 cudnn.enabled = True
 torch.cuda.set_device(0)
 
-root = '/media/moonlab/sd_card/Rellis_3D_lidar_example/'
+root = '/path/to/lidar-intensity-predictor'
 models = alpha_model.alpha()
 models.to(device)
-models.load_state_dict(torch.load(root+'/model/best_model_mega_tanh.pth')['model_state_dict'])
+models.load_state_dict(torch.load(root+'/alpha_predictor/model/best_model_mega_tanh.pth')['model_state_dict'])
 
 def load_from_bin(bin_path):
     obj = np.fromfile(bin_path, dtype=np.float32).reshape(-1, 4)
@@ -108,11 +108,11 @@ if __name__ == "__main__":
     intensity = []
     ang = []
     x = 0
-    for i in os.listdir('./Rellis_3D_os1_cloud_node_color_ply/Rellis-3D/00000/os1_cloud_node_color_ply'):
+    for i in os.listdir('/path/to/Rellis_3D_os1_cloud_node_color_ply/Rellis-3D/00000/os1_cloud_node_color_ply'):
         if x%3:
             x=x+1
             continue
-        label,i, dist, ia = convert_ply2bin('./Rellis_3D_os1_cloud_node_color_ply/Rellis-3D/00000/os1_cloud_node_color_ply/'+i)
+        label,i, dist, ia = convert_ply2bin('/path/to/Rellis_3D_os1_cloud_node_color_ply/Rellis-3D/00000/os1_cloud_node_color_ply/'+i)
         if label == 'False':
             continue
         else:
@@ -169,27 +169,27 @@ if __name__ == "__main__":
     
 ##Extract training and validation data for angle of incidence 
 
-    fits = np.load('./fits_final.npy',allow_pickle = True)
-    clas = [0,1,2,4,7]
-    gh = []
-    for i in clas:
-        p = np.poly1d(fits[i])       
-        for j in range(len(di[i])):
-            ind = insen[i][j]
-            mi = p(di[i][j])
-            ca = ind/mi
-            #print(ca)
-            gh.append(ca)
+    #fits = np.load('./fits_final.npy',allow_pickle = True)
+    #clas = [0,1,2,4,7]
+    #gh = []
+    #for i in clas:
+    #    p = np.poly1d(fits[i])       
+    #    for j in range(len(di[i])):
+    #        ind = insen[i][j]
+    #        mi = p(di[i][j])
+    #        ca = ind/mi
+    #        #print(ca)
+    #        gh.append(ca)
         
-    gt = incident[0]
-    gt = np.append(gt,incident[1],0)
-    gt = np.append(gt,incident[2],0)
-    gt = np.append(gt,incident[4],0)
-    gt = np.append(gt,incident[7],0)
-    print(gt.shape)
-    print(len(gh))
-    np.save('./train_data_dotv2_test.npy',np.asarray(gt),allow_pickle= True)
-    np.save('./train_GT_dotv2_test.npy',np.asarray(gh),allow_pickle = True)
+    #gt = incident[0]
+    #gt = np.append(gt,incident[1],0)
+    #gt = np.append(gt,incident[2],0)
+    #gt = np.append(gt,incident[4],0)
+    #gt = np.append(gt,incident[7],0)
+    #print(gt.shape)
+    #print(len(gh))
+    #np.save('./train_data_dotv2_test.npy',np.asarray(gt),allow_pickle= True)
+    #np.save('./train_GT_dotv2_test.npy',np.asarray(gh),allow_pickle = True)
 
 
 ##Plot alpha vs intensity for different distances
