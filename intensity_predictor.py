@@ -13,7 +13,7 @@ import os
 import open3d
 
 import sys
-sys.path.append('/media/moonlab/sd_card/')
+#sys.path.append('/media/moonlab/sd_card/')
 
 import alpha_model
 import torch
@@ -25,10 +25,10 @@ cudnn.deterministic = True
 cudnn.enabled = True
 torch.cuda.set_device(0)
 
-root = '/media/moonlab/sd_card/Rellis_3D_lidar_example/'
+root = '/path/to/lidar-intensity-predictor/'
 models = alpha_model.alpha()
 models.to(device)
-models.load_state_dict(torch.load(root+'/model/best_model_mega_tanh.pth')['model_state_dict'])
+models.load_state_dict(torch.load(root+'/alpha_predictor/model/best_model_mega_tanh.pth')['model_state_dict'])
 
 ant = [19,31,17,4,3]
 ants = [3,4,17,18,19,23,27,31,33]
@@ -155,9 +155,9 @@ def convert_ply2bin(ply_path,bin_path=None):
 if __name__ == "__main__":
     acc = []
     j = 0
-    for i in os.listdir('./Rellis_3D_os1_cloud_node_color_ply/Rellis-3D/00000/os1_cloud_node_color_ply'):
+    for i in os.listdir('/path/to/Rellis_3D_os1_cloud_node_color_ply/Rellis-3D/00000/os1_cloud_node_color_ply'):
         #print(i)
-        dis2, x, y, z, angles, labels, intensity,pc = convert_ply2bin('./Rellis_3D_os1_cloud_node_color_ply/Rellis-3D/00000/os1_cloud_node_color_ply/'+i)
+        dis2, x, y, z, angles, labels, intensity,pc = convert_ply2bin('/path/to/Rellis_3D_os1_cloud_node_color_ply/Rellis-3D/00000/os1_cloud_node_color_ply/'+i)
         cal_intensity = intensity*dis2/np.cos(angles)/100
         pred_labels,label_col = class_predictor(cal_intensity,z)
         gt_labels = label_assigner(labels)
@@ -193,8 +193,6 @@ if __name__ == "__main__":
         acc.append(sum(bool(x) for x in res)/len(res)*100)
         print('Accuracy: ',sum(bool(x) for x in res)/len(res)*100)
         j = j+1
-        if j%500 == 0:
-            break
     print(np.mean(acc))
     
         
