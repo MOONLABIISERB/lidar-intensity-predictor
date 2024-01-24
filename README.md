@@ -1,5 +1,5 @@
 # LiDAR-Intensity-based-predictor
-##### Accepted for publication to Special Proceedings in Advanced Robotics at International Symposium on Experimental Robotics.
+##### Accepted for publication to Special Proceedings in Advanced Robotics at International Symposium on Experimental Robotics 2023.
 ##### Repository under frequent updation. For Queries contact kasiv@tamu.edu.
  ## Training data and ground truth extractor.
  <pre>
