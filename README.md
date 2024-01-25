@@ -5,7 +5,7 @@
  <pre>
  python intensity_analyser.py
  </pre>
- Extracts the data and calibrates then for training, generating ground truth (Intensity ranges of classes), plotting etc./media/moonlab/sd_card/Rellis_3D_lidar_example/'
+ Extracts the data and calibrates then for training, generating ground truth (Intensity ranges of classes), plotting etc.
  
  <pre>
  python /utils/GT_corrector.py
