@@ -1,3 +1,7 @@
+## Append path that contains the alpha_model.py path
+import sys
+sys.path.append('./utils')
+sys.path.append('./alpha_predictor')
 from json import load
 import numpy as np
 from plyreader import PlyReader
@@ -7,10 +11,6 @@ import open3d
 #from IPython import get_ipython
 #get_ipython().run_line_magic('matplotlib', 'qt')
 import math
-
-## Append path that contains the alpha_model.py path
-import sys
-# sys.path.append('/media/moonlab/sd_card/')
 
 import alpha_model
 import torch
