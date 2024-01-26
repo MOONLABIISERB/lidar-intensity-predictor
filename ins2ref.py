@@ -6,8 +6,6 @@ import numpy as np
 #import matplotlib.pyplot as plt
 import os
 from multiprocessing.dummy import Pool
-import sys
-sys.path.append('/home/usl/Desktop/random')
 
 import alpha_predictor.alpha_model as alpha_model
 import torch
@@ -23,7 +21,7 @@ torch.cuda.set_device(0)
 models = alpha_model.alpha()
 models.to(device)
 #print(models)
-models.load_state_dict(torch.load('/home/usl/Desktop/random/alpha_predictor/models/best_model_mega_tanh.pth')['model_state_dict'])
+models.load_state_dict(torch.load('./alpha_predictor/models/best_model_mega_tanh.pth')['model_state_dict'])
 
 def load_bin(bin_path):
     obj = np.fromfile(bin_path, dtype=np.float32).reshape(-1, 4)
