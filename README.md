@@ -32,6 +32,10 @@
  <pre>
   python intensity_predictor_velodyne.py
  </pre>
+ ### Generate point cloud(intensity replaced by reflectivity). 
+ <pre>
+  python ins2ref.py
+ </pre>
  
  Command to predict the classes of the LiDAR points. Reads .ply files and predicts for classes: grass, bush, trees, puddle, person.
  
