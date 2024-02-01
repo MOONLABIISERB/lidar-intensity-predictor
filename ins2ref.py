@@ -4,6 +4,7 @@ import os
 import alpha_predictor.alpha_model as alpha_model
 import torch
 import torch.backends.cudnn as cudnn
+import open3d 
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 cudnn.benchmak = False
@@ -33,6 +34,7 @@ def ref_conv(points):
     x,y,z,ins= points[:,0],points[:,1],points[:,2],(points[:,3]*65535)
     range = np.sqrt(x**2+y**2+z**2)
     dis = x**2 + y**2 + z**2
+    pc = open3d.geometry.PointCloud()
 
     #removing lidar points less than 1 meter range(near range effect) 
     ind = np.where(range < 1)[0]
@@ -46,10 +48,17 @@ def ref_conv(points):
 
     points_n = np.zeros((len(x),3))
     points_n[:,0],points_n[:,1],points_n[:,2] = x , y, z
-    ld_vec = points_n/np.sqrt(dis[:,np.newaxis])
+
+    #Estimating surface normals
+    pc.points = open3d.utility.Vector3dVector(points_n)
+    pc.estimate_normals(search_param = open3d.geometry.KDTreeSearchParamHybrid(radius = 0.3,max_nn = 10))
+    #open3d.visualization.draw_geometries([pc])
+    nm = np.asarray(pc.normals)
+    nm[:,2] = np.abs(nm[:,2])
+    #ld_vec = points_n/np.sqrt(dis[:,np.newaxis])
     
     #predicting angle of incidence.
-    angles = alpha_predictor(ld_vec)
+    angles = alpha_predictor(nm)
     #claibrating intensity for reflectivity
     cal_intensity = ins*dis/np.cos(angles)/6553500
 
