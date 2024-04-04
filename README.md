@@ -1,4 +1,4 @@
-# LiDAR-Intensity-based-Predictor
+# Off-Road LiDAR Intensity based Semantic Segmentation
 ![Paper](https://arxiv.org/abs/2401.01439)
 ##### Accepted for publication to Special Proceedings in Advanced Robotics at International Symposium on Experimental Robotics 2023.
 ##### Repository under frequent updation. For Queries contact kasiv@tamu.edu.
