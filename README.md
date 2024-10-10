@@ -48,7 +48,7 @@
  To generate movies from images.
 ## Citation
 If you find this work useful for your research, do cite us.
-'''
+<pre>
 @InProceedings{10.1007/978-3-031-63596-0_54,
 author="Viswanath, Kasi
 and Jiang, Peng
@@ -64,6 +64,6 @@ address="Cham",
 pages="608--617",
 isbn="978-3-031-63596-0"
 }
-'''
+</pre>
 ## Related Work
 ![Refelctivity is All You Need!: Advancing Semantic Segmentation](https://github.com/unmannedlab/LiDAR-reflectivity-segmentation)
