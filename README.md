@@ -46,5 +46,24 @@
  python /utils/data_counter.py
  </pre>
  To generate movies from images.
+## Citation
+If you find this work useful for your research, do cite us.
+'''
+@InProceedings{10.1007/978-3-031-63596-0_54,
+author="Viswanath, Kasi
+and Jiang, Peng
+and Sujit, P. B.
+and Saripalli, Srikanth",
+editor="Ang Jr, Marcelo H.
+and Khatib, Oussama",
+title="Off-Road LiDAR Intensity Based Semantic Segmentation",
+booktitle="Experimental Robotics",
+year="2024",
+publisher="Springer Nature Switzerland",
+address="Cham",
+pages="608--617",
+isbn="978-3-031-63596-0"
+}
+'''
 ## Related Work
 ![Refelctivity is All You Need!: Advancing Semantic Segmentation](https://github.com/unmannedlab/LiDAR-reflectivity-segmentation)
